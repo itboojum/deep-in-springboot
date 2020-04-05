@@ -24,11 +24,11 @@ public class CodeGenerator {
     private static String controller = "controller";
 //    private static String xml = "mapper.xml";
     private static boolean isOverEntity = true;
-    private static boolean isOverController = false;
-    private static boolean isOverService = false;
-    private static boolean isOverServiceImpl = false;
-    private static boolean isOverMapper = false;
-    private static boolean isOverXml = false;
+    private static boolean isOverController = true;
+    private static boolean isOverService = true;
+    private static boolean isOverServiceImpl = true;
+    private static boolean isOverMapper = true;
+    private static boolean isOverXml = true;
 
     private static String entityVM = "/templates/entity.vm";
     private static String controllerVM = "/templates/controller.vm";
@@ -40,9 +40,9 @@ public class CodeGenerator {
     private static String [] baseDir = {entity, mapper, service, impl, controller};
     public static void main(String[] args) {
         //user -> UserService, 设置成true: user -> IUserService
-        boolean serviceNameStartWithI = true;
+        boolean serviceNameStartWithI = false;
         generateByTables(serviceNameStartWithI, packageName,
-                "pms_brand");
+                "ums_member");
     }
 
     private static void generateByTables(boolean serviceNameStartWithI, String packageName, String... tableNames) {
