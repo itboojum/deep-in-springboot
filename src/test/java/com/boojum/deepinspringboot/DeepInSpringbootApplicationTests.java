@@ -2,14 +2,12 @@ package com.boojum.deepinspringboot;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.boojum.deepinspringboot.mapper.OmsOrderMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +27,6 @@ public class DeepInSpringbootApplicationTests {
     @Autowired
     private ApplicationContext ioc;
 
-    @Autowired
-    private OmsOrderMapper omsOrderMapper;
 
     @Test
     public void contextLoads() throws Exception{
@@ -67,6 +63,7 @@ public class DeepInSpringbootApplicationTests {
                 .setEntityLombokModel(true)
                 .setRestControllerStyle(true)
                 .setSuperEntityColumns("id")
+                .setInclude("pms_brand")    //生成的表
                 .setControllerMappingHyphenStyle(true);
 
 
@@ -108,8 +105,4 @@ public class DeepInSpringbootApplicationTests {
         ag.execute();
     }
 
-    @Test
-    public void mapperTest(){
-        System.out.println(omsOrderMapper.selectList(new QueryWrapper<>()));
-    }
 }
