@@ -9,14 +9,14 @@ public interface RedisService {
     /**
      * 存储数据
      */
-    void set(String key, String value);
+    void set(String key, Object value);
 
     /**
      * 获取数据
      * @param key
      * @return
      */
-    String get(String key);
+    Object get(String key);
 
     /**
      * 设置超时时间

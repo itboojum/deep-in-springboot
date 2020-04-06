@@ -2,7 +2,7 @@ package com.boojum.deepinspringboot.service.impl;
 
 import com.boojum.deepinspringboot.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
@@ -14,30 +14,30 @@ import java.util.concurrent.TimeUnit;
 public class RedisServiceImpl implements RedisService {
 
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
-    public void set(String key, String value) {
-        stringRedisTemplate.opsForValue().set(key, value);
+    public void set(String key, Object value) {
+        redisTemplate.opsForValue().set(key, value);
     }
 
     @Override
-    public String get(String key) {
-        return stringRedisTemplate.opsForValue().get(key);
+    public Object get(String key) {
+        return redisTemplate.opsForValue().get(key);
     }
 
     @Override
     public boolean expire(String key, long expire) {
-        return stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        return redisTemplate.expire(key, expire, TimeUnit.SECONDS);
     }
 
     @Override
     public void remove(String key) {
-        stringRedisTemplate.delete(key);
+        redisTemplate.delete(key);
     }
 
     @Override
     public Long increment(String key, long delta) {
-        return stringRedisTemplate.opsForValue().increment(key, delta);
+        return redisTemplate.opsForValue().increment(key, delta);
     }
 }

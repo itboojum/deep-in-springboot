@@ -42,7 +42,7 @@ public class CodeGenerator {
         //user -> UserService, 设置成true: user -> IUserService
         boolean serviceNameStartWithI = false;
         generateByTables(serviceNameStartWithI, packageName,
-                "ums_member");
+                "ums_admin","ums_role","ums_permission","ums_admin_role_relation","ums_role_permission_relation","ums_admin_permission_relation");
     }
 
     private static void generateByTables(boolean serviceNameStartWithI, String packageName, String... tableNames) {
