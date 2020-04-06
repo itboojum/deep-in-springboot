@@ -6,11 +6,9 @@ import com.boojum.deepinspringboot.entity.PmsBrand;
 import com.boojum.deepinspringboot.service.IPmsBrandService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -27,8 +25,8 @@ public class PmsBrandController {
     private IPmsBrandService pmsBrandService;
 
     @ApiOperation("获取所有品牌列表")
-    @RequestMapping(value = "listAll", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/listAll")
+    @PreAuthorize("hasAuthority('pms:brand:read')")
     public CommonResult<List<PmsBrand>> getBrandList() {
         return CommonResult.success(pmsBrandService.list());
     }

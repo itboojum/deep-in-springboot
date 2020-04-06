@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -37,8 +38,10 @@ public class UmsAdmin extends Model<UmsAdmin> {
     @ApiModelProperty(value = "备注信息")
     private String note;
     @ApiModelProperty(value = "创建时间")
+    @JsonIgnore
     private LocalDateTime createTime;
     @ApiModelProperty(value = "最后登录时间")
+    @JsonIgnore
     private LocalDateTime loginTime;
     @ApiModelProperty(value = "帐号启用状态：0->禁用；1->启用")
     private Integer status;
